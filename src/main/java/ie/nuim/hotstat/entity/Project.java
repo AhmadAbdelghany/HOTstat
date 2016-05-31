@@ -1,7 +1,12 @@
 package ie.nuim.hotstat.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
+
 import ie.nuim.hotstat.entity.DbCredential;
 
 /**
@@ -22,10 +27,12 @@ public class Project {
     // uni-directional one-to-one association to DbCredential
     @OneToOne
     @JoinColumn(name = "db_credentials")
+    @JsonIgnore
     private DbCredential dbCredential;
 
     // bi-directional many-to-one association to Report
     @OneToMany(mappedBy = "project")
+    @JsonBackReference
     private List<Report> reports;
 
     public Project() {

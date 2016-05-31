@@ -56,12 +56,9 @@ public class ReportDaoImpl implements ReportDao {
                 }
                 ScalarResult sr = (ScalarResult) query.uniqueResult();
                 measure.setResult(sr);
-                System.out.println(measure.getName() + " : " + sr.getValue());
-                
             }
         }
-        
-        return null;
+        return report;
     }
     
     /**
