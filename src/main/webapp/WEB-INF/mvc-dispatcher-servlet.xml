@@ -17,14 +17,12 @@
 
     
     <context:annotation-config />
+    <context:property-placeholder location="classpath:project_1_db.properties" />
     
     <context:component-scan base-package="ie.nuim.hotstat.controller" />
     <context:component-scan base-package="ie.nuim.hotstat.entity" />
     <context:component-scan base-package="ie.nuim.hotstat.dao" />
     <context:component-scan base-package="ie.nuim.hotstat.service" />
-    
-    <!-- connect to application server (tomcat) datasource using JNDI  -->
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/postgresDS" resource-ref="true" expected-type="javax.sql.DataSource" />
     
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
@@ -33,6 +31,17 @@
         <property name="suffix">
             <value>.jsp</value>
         </property>
+    </bean>
+    
+    <!-- connect to application server (tomcat) datasource using JNDI  -->
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/postgresDS" resource-ref="true" expected-type="javax.sql.DataSource" />
+    
+    <bean id="ds_project_1"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:postgresql://localhost:5432/osm_munich" />
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="username" value="postgres" />
+        <property name="password" value="admin" />
     </bean>
     
     <bean id="sessionFactory"
@@ -48,10 +57,23 @@
         </property>
     </bean>
     
+    <bean id="sessionFactory_project_1"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="ds_project_1" />
+        <property name="packagesToScan" value="ie.nuim.hotstat.entity" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    
     <tx:annotation-driven />
     <bean id="transactionManager"
-	    class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-	    <property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
     
 </beans>

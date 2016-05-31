@@ -2,21 +2,25 @@ package ie.nuim.hotstat.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="measure")
 public class Measure {
     @Id
-//    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String name;
     private String description;
     private String query;
     @Column(name="isComposite")
     private boolean composite;
-    
+    @Transient
+    private Result result;
     
     public int getId() {
         return id;
@@ -47,6 +51,12 @@ public class Measure {
     }
     public void setComposite(boolean composite) {
         this.composite = composite;
+    }
+    public Result getResult() {
+        return result;
+    }
+    public void setResult(Result result) {
+        this.result = result;
     }
     
 }
