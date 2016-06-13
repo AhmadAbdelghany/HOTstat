@@ -1,7 +1,8 @@
 HOTstat
+=======
 
   Introduction
-  ------------
+--------------
 
   HOTstat is a library for assessing preparedness of regions in OpenStreetMap for use in humanitarian crisis response
   
