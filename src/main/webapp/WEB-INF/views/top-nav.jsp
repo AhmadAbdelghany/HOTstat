@@ -369,12 +369,12 @@ int p7 = percentage7.intValue();
                                     <!-- /.col -->
                                     <div class="col-md-4">
                                         <ul class="chart-legend clearfix">
-                                            <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                                            <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                                            <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                                            <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                                            <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                                            <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                                            <li><i class="fa fa-circle-o text-red"></i> trunk</li>
+                                            <li><i class="fa fa-circle-o text-green"></i> tertiary</li>
+                                            <li><i class="fa fa-circle-o text-yellow"></i> unclassified</li>
+                                            <li><i class="fa fa-circle-o text-aqua"></i> service</li>
+                                            <li><i class="fa fa-circle-o text-light-blue"></i> residential</li>
+                                            <li><i class="fa fa-circle-o text-light-gray"></i> undefined</li>
                                         </ul>
                                     </div>
                                     <!-- /.col -->
@@ -409,12 +409,8 @@ int p7 = percentage7.intValue();
                 <!-- /.col -->
                 <div class="col-md-4">
                   <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                    <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                    <li><i class="fa fa-circle-o text-red"></i> asphalt</li>
+                    <li><i class="fa fa-circle-o text-green"></i> Undefined</li>
                   </ul>
                 </div>
                 <!-- /.col -->
@@ -479,26 +475,38 @@ int p7 = percentage7.intValue();
               value: 700,
               color: "#f56954",
               highlight: "#f56954",
-              label: "Chrome"
+              label: "trunk"
             },
             {
               value: 500,
               color: "#00a65a",
               highlight: "#00a65a",
-              label: "IE"
+              label: "tertiary"
             },
             {
               value: 700,
-              color: "#f56954",
-              highlight: "#f56954",
-              label: "Chrome"
+              color: "#f39c12",
+              highlight: "#f39c12",
+              label: "unclassified"
             },
             {
               value: 500,
-              color: "#00a65a",
-              highlight: "#00a65a",
-              label: "IE"
+              color: "#00c0ef",
+              highlight: "#00c0ef",
+              label: "service"
             },
+            {
+                value: 500,
+                color: "#3c8dbc",
+                highlight: "#3c8dbc",
+                label: "undefined"
+              },
+              {
+                  value: 500,
+                  color: "#d2d6de",
+                  highlight: "#d2d6de",
+                  label: "undefined"
+                },
             
           ];
           var pieOptions = {
@@ -542,38 +550,14 @@ int p7 = percentage7.intValue();
               value: 700,
               color: "#f56954",
               highlight: "#f56954",
-              label: "Chrome"
+              label: "undefined"
             },
             {
-              value: 500,
-              color: "#00a65a",
-              highlight: "#00a65a",
-              label: "IE"
-            },
-            {
-              value: 400,
-              color: "#f39c12",
-              highlight: "#f39c12",
-              label: "FireFox"
-            },
-            {
-              value: 600,
-              color: "#00c0ef",
-              highlight: "#00c0ef",
-              label: "Safari"
-            },
-            {
-              value: 300,
-              color: "#3c8dbc",
-              highlight: "#3c8dbc",
-              label: "Opera"
-            },
-            {
-              value: 100,
-              color: "#d2d6de",
-              highlight: "#d2d6de",
-              label: "Navigator"
-            }
+                value: 700,
+                color: "#00a65a",
+                highlight: "#00a65a",
+                label: "asphalt"
+              },
           ];
           var pieOptions = {
             //Boolean - Whether we should show a stroke on each segment
