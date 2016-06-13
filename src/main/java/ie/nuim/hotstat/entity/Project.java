@@ -23,7 +23,9 @@ public class Project {
     private String name;
     
     private Integer srid;
-
+    
+    private Integer scale;
+    
     // uni-directional one-to-one association to DbCredential
     @OneToOne
     @JoinColumn(name = "db_credentials")
@@ -61,6 +63,14 @@ public class Project {
     public void setSrid(Integer srid) {
         this.srid = srid;
     }
+    
+    public Integer getScale() {
+        return scale;
+    }
+
+    public void setScale(Integer scale) {
+        this.scale = scale;
+    }
 
     public DbCredential getDbCredential() {
         return this.dbCredential;
@@ -89,5 +99,7 @@ public class Project {
         report.setProject(null);
         return report;
     }
+    
+    
 
 }

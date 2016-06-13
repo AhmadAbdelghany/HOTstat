@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class Report {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Timestamp created;
@@ -28,7 +28,10 @@ public class Report {
     // bi-directional many-to-one association to Project
     @ManyToOne
     private Project project;
-
+    
+    @Column(name="overall_score")
+    private double overallScore;
+    
     public Report() {
     }
 
@@ -64,4 +67,12 @@ public class Report {
         this.project = project;
     }
 
+    public double getOverallScore() {
+        return overallScore;
+    }
+
+    public void setOverallScore(double overallScore) {
+        this.overallScore = overallScore;
+    }
+    
 }

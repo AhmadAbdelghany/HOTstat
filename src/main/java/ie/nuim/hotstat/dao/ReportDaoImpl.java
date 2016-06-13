@@ -1,5 +1,7 @@
 package ie.nuim.hotstat.dao;
 
+import java.util.Map;
+
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -7,14 +9,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DoubleType;
+import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import ie.nuim.hotstat.entity.CompositeResult;
 import ie.nuim.hotstat.entity.Measure;
 import ie.nuim.hotstat.entity.Report;
 import ie.nuim.hotstat.entity.Result;
+import ie.nuim.hotstat.entity.ResultEntry;
 import ie.nuim.hotstat.entity.ScalarResult;
+import ie.nuim.hotstat.strategy.ScoringStrategy;
 
 @Repository
 public class ReportDaoImpl implements ReportDao {
@@ -27,13 +33,13 @@ public class ReportDaoImpl implements ReportDao {
     @Qualifier("sessionFactory_project_1")
     SessionFactory projectSF;
     
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addReport(Report report) {
-        // TODO Auto-generated method stub
+    public int addReport(Report report) {
+        return (Integer) sf.getCurrentSession().save(report);
 
     }
     
@@ -44,21 +50,45 @@ public class ReportDaoImpl implements ReportDao {
     public Report runQueries(Report report) {
         if (report.getProfile().getMeasures() != null) {
             int count = 0;
+            Result r = null;
             for (Measure measure : report.getProfile().getMeasures()) {
-                Query query = projectSF
-                    .getCurrentSession()
-                    .createSQLQuery(measure.getQuery())
-                    .addScalar("value", new DoubleType())
-                    .setResultTransformer(Transformers.aliasToBean(ScalarResult.class));
-                    
-                if (measure.getQuery().indexOf(":srid") != -1) {
-                    query.setParameter("srid", report.getProject().getSrid());
+                if (measure.isComposite()) {
+                    r = runCompositeQuery(report, measure);
+                } else {
+                    r = runScalarQuery(report, measure);
                 }
-                ScalarResult sr = (ScalarResult) query.uniqueResult();
-                measure.setResult(sr);
+                measure.setResult(r);
             }
         }
         return report;
+    }
+
+    @SuppressWarnings("unchecked")
+    private CompositeResult runCompositeQuery(Report report, Measure measure) {
+        Query query = projectSF
+            .getCurrentSession()
+            .createSQLQuery(measure.getQuery())
+            .addScalar("category", new StringType())
+            .addScalar("value", new DoubleType())
+            .setResultTransformer(Transformers.aliasToBean(ResultEntry.class));
+            
+        if (measure.getQuery().indexOf(":srid") != -1) {
+            query.setParameter("srid", report.getProject().getSrid());
+        }
+        return new CompositeResult(query.list());
+    }
+    
+    private ScalarResult runScalarQuery(Report report, Measure measure) {
+        Query query = projectSF
+            .getCurrentSession()
+            .createSQLQuery(measure.getQuery())
+            .addScalar("value", new DoubleType())
+            .setResultTransformer(Transformers.aliasToBean(ScalarResult.class));
+            
+        if (measure.getQuery().indexOf(":srid") != -1) {
+            query.setParameter("srid", report.getProject().getSrid());
+        }
+        return (ScalarResult) query.uniqueResult();
     }
     
     /**
@@ -71,5 +101,6 @@ public class ReportDaoImpl implements ReportDao {
         return (Report) criteria.uniqueResult();
         
     }
+
 
 }

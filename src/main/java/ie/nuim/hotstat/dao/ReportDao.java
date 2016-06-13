@@ -7,7 +7,7 @@ public interface ReportDao {
      * adds a new report to the database
      * @param report the report to be added
      */
-    public void addReport(Report report);
+    public int addReport(Report report);
     
     /**
      * runs the queries inside that report and populate the results

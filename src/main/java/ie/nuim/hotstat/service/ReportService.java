@@ -8,7 +8,7 @@ public interface ReportService {
      * Creates a new Report 
      * @param report new report to be added
      */
-    public void addReport(Report report);
+    public int addReport(Report report);
     
     /**
      * finds a Report by its id
@@ -19,8 +19,14 @@ public interface ReportService {
     
     /**
      * 
-     * @param report
+     * @param reportId
      * @return populated report
      */
-    public Report populateReport(Report report);
+    public Report populateReport(int reportId);
+    
+    /**
+     * calculate the score for measures in this report
+     * @param report The report to calculate the scores
+     */
+    public void calculateScore(Report report);
 }

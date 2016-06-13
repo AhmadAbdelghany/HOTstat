@@ -10,7 +10,8 @@ public interface MeasureDao {
      * adds new measure in the database
      * @param measure the new measure to add
      */
-    public void addMeasure(Measure measure);
+    public int addMeasure(Measure measure);
+    
     
     /**
      * retrieve all measures from database
@@ -20,9 +21,8 @@ public interface MeasureDao {
     
     /**
      * finds a measure by its id
-     * @param <Person>
      * @param id id of the measure to find
-     * @return measure
+     * @return measure of a given id
      */
     public Measure findMeasureById(int id);
     
@@ -31,4 +31,10 @@ public interface MeasureDao {
      * @param id
      */
     public void deleteMeasure(int id);
+
+    public void addScaledResult(int projectId, int measureId, double scaledResult);
+
+    public List<Double> getScaledResults(int measureId);
+
+    public double getWeight(int measureId, int profileId);
 }
