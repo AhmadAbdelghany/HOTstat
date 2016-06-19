@@ -5,5 +5,5 @@ HOTstat
   
 License
 -------
-This software is licensed under the terms of MIT license. Please check [LISENCE.md](LISENCE.md)
+This software is licensed under the terms of MIT license. Please check [LISENCE.md](LICENSE.md)
 
