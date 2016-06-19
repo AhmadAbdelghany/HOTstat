@@ -44,7 +44,7 @@ public class MeasureDaoImpl implements MeasureDao {
      */
     @Override
     public Measure findMeasureById(int id) {
-        Measure measure =  (Measure) sf.getCurrentSession().load(Measure.class, new Integer(id));
+        Measure measure =  (Measure) sf.getCurrentSession().get(Measure.class, new Integer(id));
         return measure;
     }
     

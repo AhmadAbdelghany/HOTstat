@@ -434,7 +434,7 @@ int p7 = percentage7.intValue();
         
   <footer class="main-footer">
     <div class="container">
-      Beta Version
+      Version 0.1.0
     </div>
     <!-- /.container -->
   </footer>
