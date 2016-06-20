@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+//import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,29 +50,30 @@ public class DefaultScoringStrategy implements ScoringStrategy {
             System.out.println(refrenceValues[i]);
         }
         //Getting IQR
-        DescriptiveStatistics da = new DescriptiveStatistics(refrenceValues);
-        double IQR = da.getPercentile(75) - da.getPercentile(25);
-        //Detecting Upper outliers
-        double upperOutlierThreshold= da.getPercentile(75)+ 1.5 * IQR ;
-        //Detecting Lower outliers
-        double loweOutlierThreshold=da.getPercentile(75)- 1.5 * IQR ;
-        
-        //Removing outliers and Getting good the enhanced Array
-        ArrayList<Double> goodRefValues=new ArrayList<Double>();
-        
-        for (int i = 0; i < refrenceValues.length; i++) {
-            if ((refrenceValues[i]>upperOutlierThreshold)||(refrenceValues[i]<loweOutlierThreshold))
-                continue;
-            else
-                goodRefValues.add(refrenceValues[i]);
-        }
-        
-        double scaledDownNumber=(MAX_SCORE-MIN_SCORE)*(targetValue-Collections.min(goodRefValues))
-                /(Collections.max(goodRefValues) - Collections.min(goodRefValues)) + MIN_SCORE;
-
-        DecimalFormat df=new DecimalFormat("##.##");
-        System.out.println("core is: "+df.format(scaledDownNumber));
-        return scaledDownNumber;
+//        DescriptiveStatistics da = new DescriptiveStatistics(refrenceValues);
+//        double IQR = da.getPercentile(75) - da.getPercentile(25);
+//        //Detecting Upper outliers
+//        double upperOutlierThreshold= da.getPercentile(75)+ 1.5 * IQR ;
+//        //Detecting Lower outliers
+//        double loweOutlierThreshold=da.getPercentile(75)- 1.5 * IQR ;
+//        
+//        //Removing outliers and Getting good the enhanced Array
+//        ArrayList<Double> goodRefValues=new ArrayList<Double>();
+//        
+//        for (int i = 0; i < refrenceValues.length; i++) {
+//            if ((refrenceValues[i]>upperOutlierThreshold)||(refrenceValues[i]<loweOutlierThreshold))
+//                continue;
+//            else
+//                goodRefValues.add(refrenceValues[i]);
+//        }
+//        
+//        double scaledDownNumber=(MAX_SCORE-MIN_SCORE)*(targetValue-Collections.min(goodRefValues))
+//                /(Collections.max(goodRefValues) - Collections.min(goodRefValues)) + MIN_SCORE;
+//
+//        DecimalFormat df=new DecimalFormat("##.##");
+//        System.out.println("core is: "+df.format(scaledDownNumber));
+//        return scaledDownNumber;
+        return 0.0;
     }
 
 }

@@ -7,6 +7,7 @@ import ie.nuim.hotstat.entity.Report;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+@Ignore
 @ContextConfiguration(locations = "classpath:test-mvc-dispatcher-servlet.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ReportDaoTest {

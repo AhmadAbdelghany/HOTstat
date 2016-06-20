@@ -19,7 +19,6 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
             .apis(RequestHandlerSelectors.any())
-//            .paths(PathSelectors.regex("/api/.*"))
             .paths(PathSelectors.any())
             .build()
             .apiInfo(apiInfo());
@@ -31,10 +30,10 @@ public class SwaggerConfig {
             "HOTstat REST API",
             "This is a description of the REST API for HOTstat, a library for assessing the humaniterian preparedness of regions in OpenStreetMap.",
             "Version 0.1.0",
-            "API TOS",
+            "API Terms Of Service",
             "a.i.abdelghany@gmail.com",
-            "This API is licenceds under MIT license",
-            "API License URL"
+            "This API is licensed  under the MIT license",
+            "https://github.com/AhmadAbdelghany/HOTstat/blob/REST/LICENSE.md"
         );
         return apiInfo;
     }

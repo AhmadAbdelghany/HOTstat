@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+//@Controller
 public class MeasureController {
     
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MeasureController.class);
